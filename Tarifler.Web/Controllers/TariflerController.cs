@@ -62,7 +62,7 @@ namespace Tarifler.Web.Controllers
 
             var entity = new Yorum
             {
-                YemekTarifId = TarifId,
+                YemekTarifId = TarifId, 
                 YayinTarihi = DateTime.Now,
                 Icerik = Text,                
                 UserId = userId
