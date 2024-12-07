@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - YemekSitesi</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/icon/bootstrap-icons/font/bootstrap-icons.css" asp-append-version="true" />
+    <link href="~/css/admin_css/admin_css.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/admin_css/admin_css.css" rel="stylesheet" asp-append-version="true" />     
+    <link rel="stylesheet" href="~/YemekSitesi.styles.css" asp-append-version="true" />
+
+    @await RenderSectionAsync("Css", required: false);
+
+</head>
+<body>
+
+    <div class="_nav">
+        <partial name="_Navbar"></partial>
+    </div>
+
+    <div class="kapsayici">        
+           @*  <main role="main" >
+                
+            </main> *@
+        <div class="stun-sol">
+            <partial name="_Sidebar"></partial>
+        </div>
+
+        <div class="stun-sag">
+            <div class="baslik">
+                @ViewData["Baslik"]
+            </div>
+            @RenderBody()
+        </div>
+        <div class="footer">
+            <partial name="_Footer"></partial>
+        </div>
+    </div>
+
+    
+
+ 
+    
+   
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Tarifler.Core.Entity.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Kullanıcılar</h1>
+<hr />
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">
+        <i class="bi bi-patch-plus"></i>
+    </a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="justify-content-center text-center align-items-center">
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserPassword)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAdmin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsGuest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsMember)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="justify-content-center text-center align-items-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAdmin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsGuest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsMember)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-warning">
+                        <i class="bi bi-pencil-square"></i>
+                </a> 
+                    <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-warning">
+                        <i class="bi bi-search"></i>
+                </a> 
+                    <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-warning">
+                        <i class="bi bi-trash3"></i>
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

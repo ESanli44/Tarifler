@@ -1,0 +1,48 @@
+﻿@model User
+
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-4">
+
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body text-center">
+                        <div class="mt-3 mb-4">
+                            <img src="~/img/userPhoto.jpg" class="rounded-circle img-fluid" style="width: 200px;" />
+                        </div>
+                        <h4 class="mb-2">@Model.FirstName - @Model.LastName</h4>
+                        <p class="text-muted mb-4">
+                            Role : @TempData["Role"] <span class="mx-2">|</span> @Model.UserEmail
+                        </p>
+                       
+                        <div>
+                            <a href="/Profil/Yemeklerim" type="button" class="btn btn-outline-primary btn-rounded btn-lg">
+                                Yemeklerim
+                            </a>
+                            <a type="button" class="btn btn-outline-primary btn-rounded btn-lg">
+                                Beğenilenler
+                            </a>
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between text-center mt-5 mb-2">
+                            <div>
+                                <p class="mb-2 h5">8471</p>
+                                <p class="text-muted mb-0">Tarif Sayısı</p>
+                            </div>
+                            <div class="px-3">
+                                <p class="mb-2 h5">8512</p>
+                                <p class="text-muted mb-0">Beğeniler</p>
+                            </div>
+                            <div>
+                                <a href="#"><p class="text-muted mb-0 h6">Şifre Değiştir</p></a>
+                               <hr />
+                                <a href="#"><p class="text-muted mb-0 h6">Ayarlar</p></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

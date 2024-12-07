@@ -1,0 +1,86 @@
+﻿@model MainModelView
+
+@{
+}
+
+<h4 class="text-center">Admin Sayfası</h4>
+<hr />
+
+<div class="row">
+    <div class="col-4">        
+        <h4 class="text-center"> Onay Bekleyen <p>Kullanıcılar</p> </h4>
+        <hr />
+
+           <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Isim</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Onay</th>
+                    </tr>
+                </thead>          
+                <tbody>
+                @foreach (var kullanici in Model.Kullanicilar)
+                {
+                    <tr>
+                        <td><a href="/Admin/Users/Edit/@kullanici.UserId">@kullanici.FirstName</a></td>
+                        <td>@kullanici.UserEmail</td>
+                        <td>@kullanici.IsActive</td>
+                    </tr>
+                }
+                </tbody>
+            </table>   
+            
+    </div>
+    <div class="col-4">
+        <h4 class="text-center">Onay Bekleyen <p>Tarifler </p> </h4> 
+        <hr />
+
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Başlık</th>
+                    <th scope="col">Yazar</th>
+                    <th scope="col">Onay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var yemek in Model.yemekTarifleri)
+                {
+                    <tr>
+
+                        <td><a href="/Admin/YemekTarifleri/Edit/@yemek.TarifId">@yemek.Baslik</a></td>
+                        <td>@yemek.User.FirstName</td>
+                        <td>@yemek.IsActive</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-4">
+        <h4 class="text-center">Okunmayı Bekleyen <p>Mesajlar</p> </h4>
+        <hr />
+
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Gönderen</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Onay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var msg in Model.Mesajlar)
+                {
+                    <tr>
+
+                        <td><a href="/Admin/Mesajlar/Edit/@msg.MesajId">@msg.Name</a></td>
+                        <td>@msg.Email</td>
+                        <td>@msg.Durum</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

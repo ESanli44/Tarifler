@@ -1,0 +1,22 @@
+﻿@model BannerViewModel
+
+
+<div class="h-100 p-5 bg-body-tertiary border rounded-3">
+    <div>
+        <h4>Kategoriler</h4>
+        @foreach (var item in Model.Kategoriler)
+        {
+            <a href="/Tarifler/Kategori/@item.KategoriId" class="btn btn-outline-secondary mx-1 my-1" type="button">@item.KategoriAdi</a>
+        }
+        
+    </div>
+    <hr />
+    <div>
+        <h4>Son Eklenenler</h4>
+        @foreach(var item in Model.Yemekler)
+        {
+            <p><a href="/Tarifler/Detay/@item.TarifId" class="btn btn-outline-secondary">@item.Baslik</a></p>
+        }    
+        
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿.kapsayici {
+    position :relative;
+    display: grid;
+    margin: 1rem 1rem;
+    height: 130vh;
+    grid-template-columns: 0.2fr 1fr;
+    grid-template-areas:
+        "sidebar icerik";
+    gap: 1rem;
+}
+
+.stun-sol {
+    grid-area: sidebar;
+    border: 0.1px solid rgb(216, 206, 206);
+    border-radius: 1rem;
+}
+
+.stun-sag {
+    grid-area: icerik;
+}
+
+    .stun-sag .baslik {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    min-height: 80px; /* değişebilir */
+    width: 100%;
+    overflow: hidden;
+    marign-top :100px;
+}
+/* ------------------------------------------------------- */
+
+.kapsayici-side {
+    position: relative;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+    .kapsayici-side .admin-menu {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .kapsayici-side .liste {
+        display: block;
+        padding: 0 5rem;
+        list-style: none;
+        width: 100%;
+    }
+
+    .kapsayici-side .liste-item {
+        margin: 2rem 0;
+    }
+
+
+    .kapsayici-side .liste-link {
+        text-decoration: none;
+    }
+

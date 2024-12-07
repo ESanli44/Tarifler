@@ -1,0 +1,126 @@
+﻿@model YemekViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="row">
+    <h4 class="text-center">Yemek Taarifi</h4>
+    <hr>
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="~/img/Tarif/@Model.Resim " class="img-thumbnail rounded-start" alt="Alternate Text" />
+            </div>
+            <div class="col-md-8 d-block ">
+
+                <div class="col w-100">
+                    <div class="card-body justify-content-between">
+                        <h5 class="card-title text-center"><u>@Model.Baslik</u></h5>
+                        <p class="card-text">
+                            @Model.Aciklama
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-1 w-100 align-items-end d-flex justify-content-end">
+                <div class="mx-3"><p class="card-text"><small class="text-muted">Yazar: @Model.User.FirstName</small></p></div>
+                <div class="mx-3"><p class="card-text"><small class="text-muted">Süre: @Model.Sure</small></p></div>
+                <div class="mx-3"><p class="card-text"><small class="text-muted">Kaç Kişilik: @Model.kisiSayisi</small></p></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card ">
+        <h5 class="card-header text-center">Tarif</h5>
+        <div class="row">
+            <div class="col-3">
+                <div class="card-body">
+                    <h5 class="card-title">Malzeme:</h5>
+                    @Model.Malzeme
+                </div>
+            </div>
+            <div class="col-9">
+                <div class="card-body">
+                    <h5 class="card-title">Yapılışı:</h5>
+                    @Html.Raw(Model.TarifAciklama)
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <form action="/Tarifler/YorumEkle" method="post" class="border">
+        <input type="hidden" id="TarifId" name="TarifId" value="@Model.TarifId">
+        <div class="col">
+            <div class="mb-3">
+                <label for="Text" class="form-label">Yorum:</label>
+                <textarea type="text" name="Text" rows="3" id="Text" class="form-control"> </textarea>
+                <button class="btn btn-primary my-2" type="submit">Gönder</button>
+            </div>
+        </div>
+    </form>
+    
+     @foreach(var yorum in Model.Yorumlar)
+     {                          
+        <div class="col w-100 border">
+            <div class="mb-3">
+                <h6>@yorum.User.UserName</h6>
+                <p>@yorum.Icerik</p>
+                <small>@yorum.YayinTarihi</small>
+            </div>
+        </div>
+     }
+
+    <hr class="mt-5">
+    <div>
+        <h4 class="text-center my-5">Benzer Tarifler</h4>
+    </div>
+    <hr>
+    <div class="row row-cols-md-4">
+        <div class="col">
+            <div class="card h-100">
+                <img src="~/img/Tarif/@Model.Resim " class="card-img-top" alt="Alternate Text" />
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="~/img/Tarif/@Model.Resim " class="card-img-top" alt="Alternate Text" />
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a short card.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="~/img/Tarif/@Model.Resim " class="card-img-top" alt="Alternate Text" />
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="~/img/Tarif/@Model.Resim " class="card-img-top" alt="Alternate Text" />
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

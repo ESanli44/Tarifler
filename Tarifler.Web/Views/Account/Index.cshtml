@@ -1,0 +1,29 @@
+﻿@model IEnumerable<User>
+
+@{
+    ViewData["Baslik"] = "Tarifler";
+}
+<hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">İsim</th>
+            <th scope="col">Soy İsim</th>
+            <th scope="col">Kullanici</th>
+            <th scope="col">Email</th>
+            <th scope="col">Onay?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.UserName</td>
+                <td>@item.UserEmail</td>
+                <td>@item.IsActive </td>
+            </tr>
+        }
+    </tbody>
+</table>
