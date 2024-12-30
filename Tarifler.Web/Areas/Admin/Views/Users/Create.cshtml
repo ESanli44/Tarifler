@@ -4,11 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>User</h4>
+<h4 class="text-center">Kullanıcı Ekle</h4>
 <hr />
-<div class="row">
+<div class="row justify-content-center align-items-center">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -61,15 +60,11 @@
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                 </label>
-            </div>
+            </div><br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Ekle" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

@@ -12,7 +12,7 @@
                 @foreach(var item in Model)
                 {
             <div class="carousel-item @(item == Model.FirstOrDefault() ? "active" : "")">
-                <a href="#"><img src="~/img/Slider/@item.Resim" class="d-block w-100" width="250px" height="550px"></a>
+                <a href="/Home/Slider/@item.SliderId"><img src="~/img/Slider/@item.Resim" class="d-block w-100" width="250px" height="550px"></a>
                         <div class="carousel-caption d-none d-md-block">
                             <h5>@item.Baslik</h5>
                             <p>@item.Aciklama</p>

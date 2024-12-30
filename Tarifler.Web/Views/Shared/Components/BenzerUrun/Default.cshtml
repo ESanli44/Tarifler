@@ -1,0 +1,15 @@
+﻿@model List<YemekTarif>
+
+@foreach(var item in Model)
+{
+    <div class="col">
+        <div class="card w-70">
+            <a href="/Tarifler/Detay/@item.TarifId" ><img src="~/img/Tarif/@item.Resim " class="card-img-top" style="height:250px;" alt="Alternate Text" /></a>
+            <div class="card-body">
+                <h5 class="card-title">@item.Baslik</h5>
+                <p class="card-text">@item.Tur.TurAdi Yemekleri</p>
+            </div>
+        </div>
+    </div>
+}
+

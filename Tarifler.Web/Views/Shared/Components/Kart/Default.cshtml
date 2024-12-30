@@ -1,35 +1,51 @@
 ﻿@model List<YemekTarif>
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<div class="row  row-cols-md-4 g-3">
 @foreach (var item in Model)
 {
     <div class="col">
         <div class="card shadow-sm">
            <div>
                 <a href="/Tarifler/Detay/@item.TarifId">
-                   <img src="~/img/Tarif/@item.Resim" alt="Alternate Text" style="width:420px; height:300px;" />
+                        <img src="~/img/Tarif/@item.Resim" alt="Alternate Text" style="width:265px; height:250px;" />
                 </a>
            </div>
-            
+                
             <div class="card-body">
                 <p class="card-text">@item.Baslik</p>
                 <hr />
-
+                    
                 <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-body-secondary">@item.User.UserName</small>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Beğen</button>                       
-                    </div>
+                        <small class="text-body-secondary"><u>Yazar</u>: <small>@item.User.FirstName</small> </small>
+                        
+                        <div class="btn-group">
+                            
+                            <input type="hidden" id="TarifId-@item.TarifId" name="TarifId" value="@item.TarifId" />
+                            <button id="btnBegeni-@item.TarifId" class="btn btn-outline-primary
+                                @foreach (var begeni in item.Begeniler)
+                                {
+                                    if(begeni.Begen)
+                                        @((begeni.Begen == true && int.Parse(User.Claims.Where(x => x.Type == "UserId").FirstOrDefault().Value) == begeni.User.UserId) ? "btn-primary text-white" : "")
+
+                                }
+                                 
+                                    begeni-row" data-id="@item.TarifId"  type="submit">
+                                    Beğeni
+                                </button>
+                               
+                        </div>
+                        
                 </div>
+                   
                 <hr />
                     <div class="d-flex justify-content-between text-center mb-2">
                         <div>
-                            <p class="mb-2 h5">8471</p>
-                            <p class="text-muted mb-0">Yorum</p>
+                            <p class="mb-2 h5">@item.Begeniler.Count</p>
+                            <p class="text-muted mb-0">Beğeniler</p>
                         </div>
                         <div class="px-3">
-                            <p class="mb-2 h5">8512</p>
-                            <p class="text-muted mb-0">Beğeniler</p>
+                            <p class="mb-2 h5">@item.Yorumlar.Count</p>
+                            <p class="text-muted mb-0">Yorumlar</p>
                         </div>
                     </div>
                   
@@ -39,4 +55,3 @@
 
 }
 </div>
-  

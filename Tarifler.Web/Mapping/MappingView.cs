@@ -14,6 +14,11 @@ namespace Tarifler.Web.Mapping
             CreateMap<User, LoginViewModel>().ReverseMap();
             CreateMap<Mesaj, IletisimViewModel>().ReverseMap();
             CreateMap<YemekTarif, YemekViewModel>().ReverseMap();
+            CreateMap<Yorum, YorumViewModel>().ReverseMap();
+            CreateMap<Begeni, BegeniViewModel>().ReverseMap();
+            CreateMap<User, SifreGuncelleViewModel>().ReverseMap();
+            CreateMap<User, BilgilerimViewModel>().ReverseMap();
+            CreateMap<YemekTarif, tarifUptadateViewModel>().ReverseMap();
         }
     }
 }

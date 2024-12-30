@@ -1,14 +1,13 @@
-﻿@model Tarifler.Core.Entity.Kategori
+﻿@model Kategori
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
 
-<h4>Kategori</h4>
+<h4 class="text-center">Kategori Güncelle</h4>
 <hr />
-<div class="row">
+<div class="row justify-content-center align-items-center">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -22,15 +21,12 @@
                 <label asp-for="KategoriAciklama" class="control-label"></label>
                 <input asp-for="KategoriAciklama" class="form-control" />
                 <span asp-validation-for="KategoriAciklama" class="text-danger"></span>
-            </div>
+            </div><br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

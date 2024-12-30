@@ -26,6 +26,9 @@ namespace Tarifler.Data.Configurations
 
                 new(){ UserId=4, FirstName="Zehra", LastName="Şanlı", UserName="Zsanli", UserEmail="Zsanli@gmail.com", UserPhone="11111111111",
                 IsActive=true, IsAdmin=false, IsGuest=true, IsMember=false, UserPassword="Zehra.123"},
+
+                new(){ UserId=5, FirstName="Admin", LastName="Admin", UserName="Admin", UserEmail="Admin@gmail.com", UserPhone="11111111111",
+                IsActive=true, IsAdmin=true, IsGuest=false, IsMember=false, UserPassword="Admin.123"},
             });
         }
     }

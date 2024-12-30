@@ -20,15 +20,13 @@
 
             <div class="dropdown text-end">
                 <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <i class="bi bi-person-circle" style="font-size:25px;color:lightcoral;"></i>
                 </a>
                 <ul class="dropdown-menu text-small" style="">
-                    <li><a class="dropdown-item" asp-controller="AppUsers" asp-action="Index">Kullanıcılar</a></li>
-                    <li><a class="dropdown-item" asp-action="">Yemek Tarif</a></li>
-                    <li><a class="dropdown-item" asp-action="">Yemek Kategori</a></li>                  
-                    <li><a class="dropdown-item" asp-action="">Yemek Türleri</a></li>
-                    <li><a class="dropdown-item" asp-action="">Yemek Slider</a></li>
-                    <li><a class="dropdown-item" asp-action="">Yemek Beğenileri</a></li>
+                    <li><a class="dropdown-item" href="/Home/Index">Web Sitesi</a></li>
+                    <li><a class="dropdown-item" href="/Profil">Profil</a></li>
+                    <li><a class="dropdown-item" href="/Profil/Yemeklerim">Tariflerim</a></li>
+                    <li><a class="dropdown-item" href="/Profil/Begenilenler">Beğendiklerim</a></li>
 
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="/Account/SignOut">Çıkış</a></li>

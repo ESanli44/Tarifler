@@ -4,11 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
 
-<h4>YemekTarif</h4>
+<h4 class="text-center">Tarif Oluştur</h4>
 <hr />
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -38,9 +37,9 @@
                 <span asp-validation-for="Malzeme" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" type="file" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+                <label asp-for="Resim" class="control-label"></label>
+                <input asp-for="Resim" class="form-control" type="file" />
+                <span asp-validation-for="Resim" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="TarifAciklama" class="control-label"></label>
@@ -63,9 +62,9 @@
             <div class="form-group">
                 <label asp-for="TurId" class="control-label"></label>
                 <select asp-for="TurId" class ="form-control" asp-items="ViewBag.TurId"></select>
-            </div>
+            </div><br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Ekle" class="btn btn-primary" />
             </div>
         </form>
     </div>

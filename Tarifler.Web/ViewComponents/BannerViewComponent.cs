@@ -18,7 +18,7 @@ namespace Tarifler.Web.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var yBanner = _serviceTarif.GetAll().OrderByDescending(x => x.TarifId).Take(4);
+            var yBanner = _serviceTarif.GetAllWhere(x=>x.IsActive==true).OrderByDescending(x => x.TarifId).Take(4);
             var kBanner = await _serviceKategori.GetAllAsync();
             
             var model = new BannerViewModel(){

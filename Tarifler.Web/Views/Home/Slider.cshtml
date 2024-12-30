@@ -1,0 +1,30 @@
+﻿@model Slider
+
+@section Css{
+    
+}
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4" id="slider-title">@Model.Baslik</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <img id="slider-image" src="/img/Slider/@Model.Resim" class="card-img-top w-100 h-100" alt="Slider Image">
+                    <div class="card-body">
+                         <h4 id="slider-heading">@Model.Aciklama</h4>
+                        <p id="slider-description">@Model.Icerik</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+ 
+
+
+
+
+
+
+

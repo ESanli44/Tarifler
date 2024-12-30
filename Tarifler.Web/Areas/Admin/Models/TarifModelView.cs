@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Tarifler.Core.Entity;
@@ -23,8 +24,11 @@ namespace Tarifler.Web.Areas.Admin.Models
         [Required(ErrorMessage = "Zorunlu Alan")]
         public string Malzeme { get; set; }
 
+        [BindNever]
+        [ValidateNever]
+        [Display(Name = "Resim")]
         public string? Resim { get; set; }
-        public FormFile? Image { get; set; }
+       
 
         [Required(ErrorMessage = "Zorunlu Alan")]
         [Display(Name = "Tarifin Yapılışı")]
@@ -37,7 +41,6 @@ namespace Tarifler.Web.Areas.Admin.Models
         [Required(ErrorMessage = "Zorunlu Alan")]
         [Display(Name = "Kimin Tarifi")]
         public int? UserId { get; set; }
-
         [ValidateNever]
         public User User { get; set; }
 

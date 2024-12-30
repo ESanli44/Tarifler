@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Security.Claims;
 using Tarifler.Core.Entity;
 using Tarifler.Service.Abstract;
@@ -16,19 +17,31 @@ namespace Tarifler.Web.Controllers
         private readonly IService<YemekTarif> _serviceTarif;
         private readonly IService<Kategori> _serviceKategori;
         private readonly IService<Yorum> _serviceYorum;
+        private readonly IService<Begeni> _serviceBegeni;
         private readonly IMapper _mapper;
 
-        public TariflerController(IService<YemekTarif> serviceTarif, IMapper mapper, IService<Kategori> serviceKategori, IService<Yorum> serviceYorum)
+        public TariflerController(IService<YemekTarif> serviceTarif, IMapper mapper, IService<Kategori> serviceKategori, IService<Yorum> serviceYorum, IService<Begeni> serviceBegeni)
         {
             _serviceTarif = serviceTarif;
             _mapper = mapper;
             _serviceKategori = serviceKategori;
             _serviceYorum = serviceYorum;
+            _serviceBegeni = serviceBegeni;
         }
 
-        public IActionResult Index(string Ara="")
+        public IActionResult Index(string Ara="",int page=1)
         {
-            TempData["Ara"]=Ara;
+            if (Ara != null)
+            {
+                var kart = new KartFiltreViewModel()
+                {
+                    Arama = Ara,
+                    PageNumber = page,
+                    isim ="Tarifler"
+                };
+                ViewData["kart"] = kart;
+
+            }
             return View();
         }
 
@@ -43,7 +56,7 @@ namespace Tarifler.Web.Controllers
                 .Include(y => y.Kategori)
                 .Include(y => y.Tur)
                 .Include(y => y.User)
-                .Include(y => y.Yorumlar)
+                .Include(y => y.Yorumlar).ThenInclude(x=>x.User)
                 .FirstOrDefaultAsync(m => m.TarifId == id);
 
             if (yemekTarif == null)
@@ -69,38 +82,79 @@ namespace Tarifler.Web.Controllers
             };
 
             await _serviceYorum.AddAsync(entity);
-
-            return RedirectToAction("Detay");
-        }
-        public async Task<IActionResult> Kategori(int id=0, string Ara = "")
-        {
-            if (id==0)
+            var yorum = _serviceYorum.GetQueryable().OrderByDescending(x=>x.YorumId).Take(1).Select(x=>x.YorumId);
+            int yorumId = 0;
+            foreach (int num in yorum)
             {
-                TempData["Ara"] = Ara;
-                var kategori = await _serviceKategori.GetAllAsync();
+                yorumId = int.Parse(num.ToString());
+            }
 
-                var yemek = _serviceTarif.GetQueryable()
-                .Include(y => y.User)
-                .Include(k => k.Kategori)
-                .ToList();
+            //return Redirect("/Tarifler/Detay/" + TarifId );
+            return Json(new {
+                yorumId,
+                username,
+                Text,
+                entity.YayinTarihi,
+            });
+        }
+       
+        public async Task<IActionResult> YorumSil(int YorumId)
+        {
+            var kayit = await _serviceYorum.GetFindAsync(YorumId);
+            await _serviceYorum.DeleteAsync(kayit);
 
-                return View(new KategoriViewvModel() { Kategoriler = kategori, Yemekler = yemek });
+            return Json(new
+            {
+                YorumId,               
+            });
+        }
+
+        public async Task<IActionResult> Kategori(int id=0, string Ara = "",int page=1)
+        {
+            var kategori = await _serviceKategori.GetAllAsync();
+
+            var kart = new KartFiltreViewModel()
+            {
+                Arama = Ara,
+                Kategori = id,
+                isim = "Tarifler/Kategori",
+                PageNumber = page
+            };
+            ViewData["kart"] = kart;
+
+            return View(new KategoriViewvModel() { Kategoriler = kategori });
+           
+        }
+
+        public async Task<IActionResult> Begen(int TarifId)
+        {
+            bool deger = false;
+            var userId = int.Parse(User.Claims.Where(u => u.Type == "UserId").FirstOrDefault().Value);
+            var yemek = await _serviceBegeni.GetFirstAsync(x => x.YemekTarifId == TarifId && x.UserId == userId);
+
+            if (yemek != null)
+            {
+                await _serviceBegeni.DeleteAsync(yemek);
+                deger = false;
             }
             else
             {
-                TempData["Ara"] = Ara;
-                var kategori = await _serviceKategori.GetAllAsync();
+                var begeni = new Begeni()
+                {
+                    Begen = true,
+                    UserId = userId,
+                    YemekTarifId = TarifId,
+                };
 
-                var yemek = _serviceTarif.GetQueryable()
-                .Include(y => y.User)
-                .Include(k => k.Kategori)
-                .Where(k => k.KategoriId == id).ToList();
-
-                return View(new KategoriViewvModel() { Kategoriler = kategori, Yemekler = yemek });
+                await _serviceBegeni.AddAsync(begeni);
+                deger = true;
             }
-                         
+
+            return Json(new
+            {
+                deger,
+            });
+
         }
-
-
     }
 }

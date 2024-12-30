@@ -1,4 +1,4 @@
-﻿@model YemekViewModel
+﻿@model tarifUptadateViewModel
 
 
 @{
@@ -6,13 +6,14 @@
 }
 
 
-<h4>Tarif Güncelle</h4>
+<h4 class="text-center">Tarif Güncelle</h4>
 <hr />
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TarifId" />
+            <input type="hidden" asp-for="Resim" />
 
             <div class="form-group">
                 <label asp-for="Baslik" class="control-label"></label>
@@ -40,9 +41,14 @@
                 <span asp-validation-for="Malzeme" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" type="file" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+                <label asp-for="Resim" class="control-label"></label>
+                <input asp-for="Resim" class="form-control" type="file" />
+                <span asp-validation-for="Resim" class="text-danger"></span>
+
+                @if (Model.Resim != null && !string.IsNullOrWhiteSpace(Model.Resim))
+                {
+                    <img class="mt-2" src="/img/Tarif/@Model.Resim" height="100px" />
+                }
             </div>
             <div class="form-group">
                 <label asp-for="TarifAciklama" class="control-label"></label>

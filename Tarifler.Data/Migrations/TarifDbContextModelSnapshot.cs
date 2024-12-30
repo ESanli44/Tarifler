@@ -91,6 +91,18 @@ namespace Tarifler.Data.Migrations
                             KategoriId = 4,
                             KategoriAciklama = "Tatlılar",
                             KategoriAdi = "Tatlı"
+                        },
+                        new
+                        {
+                            KategoriId = 5,
+                            KategoriAciklama = "Yöresel Yemekler",
+                            KategoriAdi = "Yöresel"
+                        },
+                        new
+                        {
+                            KategoriId = 6,
+                            KategoriAciklama = "Pastalar",
+                            KategoriAdi = "Pasta"
                         });
                 });
 
@@ -149,6 +161,35 @@ namespace Tarifler.Data.Migrations
                     b.HasKey("MesajId");
 
                     b.ToTable("Mesajlar");
+
+                    b.HasData(
+                        new
+                        {
+                            MesajId = 1,
+                            Durum = false,
+                            Email = "Email@gmail.com",
+                            MesajAciklama = "Yazar Kadrosuna girmek istiyorum.",
+                            Name = "Basri",
+                            Tarih = new DateTime(2024, 12, 29, 22, 44, 0, 644, DateTimeKind.Local).AddTicks(4497)
+                        },
+                        new
+                        {
+                            MesajId = 2,
+                            Durum = false,
+                            Email = "Tarkan@gmail.com",
+                            MesajAciklama = "Sebze Yemek Sayisi Çok Az.",
+                            Name = "Ayşe",
+                            Tarih = new DateTime(2024, 12, 29, 22, 44, 0, 644, DateTimeKind.Local).AddTicks(4524)
+                        },
+                        new
+                        {
+                            MesajId = 3,
+                            Durum = false,
+                            Email = "Merve@gmail.com",
+                            MesajAciklama = "Yöresel Yemekler Bölümünde hata var..",
+                            Name = "Merve",
+                            Tarih = new DateTime(2024, 12, 29, 22, 44, 0, 644, DateTimeKind.Local).AddTicks(4526)
+                        });
                 });
 
             modelBuilder.Entity("Tarifler.Core.Entity.Slider", b =>
@@ -165,12 +206,41 @@ namespace Tarifler.Data.Migrations
                     b.Property<string>("Baslik")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Icerik")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Resim")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SliderId");
 
                     b.ToTable("Sliders");
+
+                    b.HasData(
+                        new
+                        {
+                            SliderId = 1,
+                            Aciklama = "Uzman Aşçılar Sizin İçin Hazırladı.",
+                            Baslik = "Nefis Yemekler Bu Sitede",
+                            Icerik = "Nefis Yemekler: Her Damağa Hitap Eden Efsane Lezzetler!\r\n\r\nYemek sitemizde, her öğün için sizi bekleyen nefis tariflerle dolu bir dünya sunuyoruz. Her biri, taptaze malzemeler ve özenle seçilmiş tariflerle hazırlanmış, mutfağınızda harikalar yaratmanız için ilham veriyor. Gerek geleneksel lezzetler, gerekse modern dokunuşlarla zenginleştirilmiş yemekler, sofralarınıza sadece doyuruculuk değil, aynı zamanda birer lezzet şöleni katacak.\r\n\r\nAşçılarımız, yılların deneyimini ve mutfak sanatındaki ustalıklarını her tarifte ortaya koyuyor. Mutfakta geçirdiğimiz her an, size en lezzetli ve keyifli yemek deneyimlerini sunma amacımızla şekilleniyor. İster sağlıklı, ister zengin tatlar arayanlar için, tüm damak zevklerine hitap eden tariflerimizle karşınızdayız.\r\n\r\nKlasik tatlardan, dünyanın dört bir köşesinden gelen özel yemeklere kadar geniş bir yelpazede sunulan nefis yemeklerimiz, sadece gözlere değil, aynı zamanda ruhunuza da hitap edecek. Mutfaklarınızda, en özel anları paylaşmak ve sevdiklerinizle birlikte keyifli sofralar kurmak için ihtiyaç duyduğunuz her tarife buradan ulaşabilirsiniz.\r\n\r\nBundan daha fazlası için, sitemizdeki nefis yemek tariflerine göz atmayı unutmayın. Lezzetli bir keşif yapmak için hemen başlayın ve yemeklerinizi en unutulmaz hale getirin!\r\n\r\n",
+                            Resim = "wright-brand-bacon-varvj5jjtzc-unsplash.jpg"
+                        },
+                        new
+                        {
+                            SliderId = 2,
+                            Aciklama = "Uzman Aşçılar Sizin İçin Hazırladı",
+                            Baslik = "Hamburger Çeşitleri",
+                            Icerik = "Hamburgerin Zirvesine Yolculuk: Usta Aşçılardan Efsane Tarifler!\r\n\r\nYemek sitemizde, hamburgerin en lezzetli halini deneyimlemeye hazır olun! Usta aşçılarımız, klasik ve yaratıcı hamburger tarifleriyle mutfaklarınıza eşsiz bir tat katıyor. Her biri, sadece lezzet değil, aynı zamanda özenli bir ustalıkla hazırlanmış hamburgerler sunmak için titizlikle çalışıyor.\r\n\r\nAşçılarımız, hamburgerin geleneksel tariflerini bir adım daha öteye taşıyarak, malzeme seçiminden pişirme tekniklerine kadar her detayı mükemmel hale getiriyor. Efsane köfteler, taze ve kaliteli malzemeler, özgün soslar ve ekler, hamburgeri adeta bir sanat eserine dönüştürüyor. Her lokmada, lezzetlerin dansı ve eşsiz uyumu sizi bekliyor.\r\n\r\nHamburgerlerimiz, yalnızca doyurucu değil, aynı zamanda her damak zevkine hitap eden, özgün kombinasyonlarla bezenmiş. Dilerseniz klasik Amerikan tarzı bir hamburgerin keyfini çıkarabilir, dilerseniz deniz ürünleri veya vejetaryen seçeneklerle farklı tatlar keşfedebilirsiniz. Aşçılarımız, her tarifte benzersiz bir dokunuşla hamburgeri yeniden keşfetmenizi sağlıyor.\r\n\r\nHer bir hamburger, aşçılarımızın mutfakta geçirdiği yılların bir yansıması olarak, sadece lezzet değil, aynı zamanda bir deneyim sunuyor. Hamburgerin sadece bir yemek değil, bir tutkuyla hazırlandığını hissedeceksiniz.\r\n\r\nHamburgerin en özel halini keşfetmek için hemen sitemize göz atın, aşçılarımızın eşsiz tarifleriyle damağınızda unutulmaz tatlar bırakın!",
+                            Resim = "hamburger.jpg"
+                        },
+                        new
+                        {
+                            SliderId = 3,
+                            Aciklama = "Uzman Aşçılar Sizin İçin Hazırladı",
+                            Baslik = "Dünya Mutfağı",
+                            Icerik = "Dünya Mutfağının Zirve Aşçılarıyla Tanışın: Eşsiz Tarifler, Büyüleyici Lezzetler!\r\n\r\nYemek sitemizde, dünya mutfaklarının en gözde lezzetlerini sizlerle buluşturuyoruz! Ancak bu lezzetleri öne çıkaran asıl unsurlar, her biri kendi alanında usta olan aşçılarımızdır. Yalnızca geleneksel tarifleri değil, aynı zamanda modern dokunuşlarla da harmanlanmış özgün tariflerle de karşınızdayız.\r\n\r\nAşçılarımız, mutfağın her köşesinde dünyaca ünlü mutfak kültürlerinden ilham alarak, her tarifte eşsiz bir lezzet deneyimi sunuyor. İtalya’dan Fransa’ya, Japonya’dan Meksika’ya kadar uzanan geniş bir yelpazede, her bir yemek sadece bir tabak değil, aynı zamanda bir kültür yolculuğudur.\r\n\r\nAşçılarımız, yıllar süren deneyimleri ve yaratıcı bakış açılarıyla her tarifi bir sanat eserine dönüştürüyor. Bir yandan geleneksel tatları korurken, diğer yandan cesur ve yenilikçi malzemelerle tatları zenginleştiriyorlar. Onların ellerinden çıkan her tarif, dünyadaki farklı mutfaklardan sadece lezzetleri değil, aynı zamanda o kültürün ruhunu da sofralarınıza taşıyor.\r\n\r\nYemeklerimiz, her detayda titizlikle hazırlanıyor ve dünya çapındaki mutfakları en otantik şekilde deneyimlemeniz için özenle sunuluyor. Sadece bir yemek değil, bir keşif, bir deneyim vaat ediyoruz. Her bir tarif, aşçılarımızın tutkusu ve bilgi birikimiyle buluşuyor ve sofralarınızı unutulmaz kılıyor.\r\n\r\nSiz de dünya mutfaklarının büyüsüne kapılmak ve aşçılarımızın ustalıklarını keşfetmek istiyorsanız, sitemize göz atmayı unutmayın. Lezzet dolu bir yolculuğa çıkmaya hazır olun!",
+                            Resim = "emy-xobyibymx20-unsplash.jpg"
+                        });
                 });
 
             modelBuilder.Entity("Tarifler.Core.Entity.Tur", b =>
@@ -222,6 +292,48 @@ namespace Tarifler.Data.Migrations
                             TurId = 5,
                             TurAciklama = "Çorba Yemekleri",
                             TurAdi = "Çorba"
+                        },
+                        new
+                        {
+                            TurId = 6,
+                            TurAciklama = "Salata Çeşitleri",
+                            TurAdi = "Salata"
+                        },
+                        new
+                        {
+                            TurId = 7,
+                            TurAciklama = "Meze Çeşitleri",
+                            TurAdi = "Meze"
+                        },
+                        new
+                        {
+                            TurId = 8,
+                            TurAciklama = "Pilav Çeşitleri",
+                            TurAdi = "Pilav"
+                        },
+                        new
+                        {
+                            TurId = 9,
+                            TurAciklama = "Hamur İşi Yemekler",
+                            TurAdi = "Hmaur İşi"
+                        },
+                        new
+                        {
+                            TurId = 10,
+                            TurAciklama = "Bakliyat Yemekleri",
+                            TurAdi = "Bakliyat"
+                        },
+                        new
+                        {
+                            TurId = 11,
+                            TurAciklama = "Şerbetli Tatlılar",
+                            TurAdi = "Şerbetli Tatlılar"
+                        },
+                        new
+                        {
+                            TurId = 12,
+                            TurAciklama = "Pasta Çeşitleri",
+                            TurAdi = "Pasta"
                         });
                 });
 
@@ -328,6 +440,20 @@ namespace Tarifler.Data.Migrations
                             UserName = "Zsanli",
                             UserPassword = "Zehra.123",
                             UserPhone = "11111111111"
+                        },
+                        new
+                        {
+                            UserId = 5,
+                            FirstName = "Admin",
+                            IsActive = true,
+                            IsAdmin = true,
+                            IsGuest = false,
+                            IsMember = false,
+                            LastName = "Admin",
+                            UserEmail = "Admin@gmail.com",
+                            UserName = "Admin",
+                            UserPassword = "Admin.123",
+                            UserPhone = "11111111111"
                         });
                 });
 
@@ -389,13 +515,14 @@ namespace Tarifler.Data.Migrations
                         new
                         {
                             TarifId = 1,
-                            Aciklama = "Aciklama",
+                            Aciklama = "Tek başına bir kültürdür Türk mutfağı. Neredeyse tüm mutfakların muadillerini bünyesinde barındırır. Üzerinde bulunduğu toprakların tarihçesinden dolayı üç kıta, onlarca farklı kültürden etkilenmiştir. Şerbet bulsa tatlıya döker, süt bulsa tatlı yapar. Saray mutfağı diye bir başlı başına bir külliyatı vardır. Hamur işlerinde kimse eline su dökemez. Pilavı, Asyalılar kadar sever. Kıyma bulsa köfte yapar, et bulsa içine su katar. Güzeldir, samimidir, bereketlidir, orijinaldir.",
                             Baslik = "İmam bayıldı",
                             IsActive = true,
                             KategoriId = 1,
                             Malzeme = "Tuz, Patlıcan, Lıyma, Domatez",
+                            Resim = "bayildi.webp",
                             Sure = 15,
-                            TarifAciklama = "Tarif",
+                            TarifAciklama = "Patlıcanları alacalı soyarak yarım saat kadar tuzlu suda bekletin.\r\nİç harcı için soğanları piyazlık doğrayın, 2-3 yemek kaşığı sıvı yağ ile tavaya alın ve kavurmaya başlayın.\r\n5 dakika kadar soğanlar kavrulduktan sonra küçük doğranmış biberleri ve sarımsakları ilave edin, bir süre daha kavurun.\r\nBiberler diriliğini kaybedince küçük küçük doğranmış domates, baharatlar ve tuzu da ekleyerek domatesler suyunu biraz çekene kadar kavurmaya devam edin.\r\nİnce kıyılmış maydanozu ekleyerek ocaktan alın.\r\nTuzunu akıtıp, havlu kağıt ile kuruladığımız patlıcanları bol sıvı yağda çevirerek kızartın.\r\nKızaran patlıcanların yağının fazlasını alması için havlu kağıda alın.\r\nFazla yağı süzüldükten sonra fırın kabına aldığınız patlıcanların üzerini boydan çizgi şeklinde kesin. İçlerini dikkatli bir şekilde açın.\r\nİçlerine hazırladığınız iç harcından doldurun.\r\nSüslemek için üzerine çeri domatesler yerleştirin ve son olarak sıcak suda çözdürdüğünüz salçayı yemeğin üzerine gezdirin.\r\nHazır olan imambayıldıları önceden 190 derece ısıtılmış fırında 40 dakika pişirin.\r\nSürenin sonunda ince kıyılmış maydanozla süsleyerek servis edin. Afiyet olsun!",
                             TurId = 4,
                             UserId = 1,
                             kisiSayisi = "4-6"
@@ -403,15 +530,136 @@ namespace Tarifler.Data.Migrations
                         new
                         {
                             TarifId = 2,
-                            Aciklama = "Aciklama",
+                            Aciklama = "Kebap, Orta Doğu ve Akdeniz mutfaklarının en tanınmış yemeklerinden biridir. Kelime olarak \"kebap,\" Arapça \"kebāb\" kelimesinden türemiş olup, pişmiş et anlamına gelir. Tarihsel olarak, kebaplar antik Mezopotamya, Pers, ve Osmanlı İmparatorluğu gibi medeniyetlerde önemli bir yer tutmuştur. Kebapların tarihi, binlerce yıl öncesine kadar dayanır ve farklı kültürlerin etkisiyle çeşitli şekillerde gelişmiştir.",
                             Baslik = "Kebap",
                             IsActive = true,
                             KategoriId = 1,
-                            Malzeme = "Tuz, Kıyma, Biber",
+                            Malzeme = "Tuz, Kıyma, Toz Biber, Sarımsak",
+                            Resim = "Kebap.jpg",
                             Sure = 10,
-                            TarifAciklama = "Tarif",
+                            TarifAciklama = "Öncelikle kıymamızı derince bir kaba alalım üzerine rendelenmiş kuru soğan ve sarımsaklarımızı katalım sonrasında baharat ve tuzunu da katıp iyice yoğuralım.\r\nBuzdolabında en az yarım saat dinlendirelim.\r\nDinlenen kıymamızdan mandalina dan biraz büyük parçalar koparalım.(benim yassı şişim yetmediği için ince şişlerden iki tanesini birleştirip taktım )\r\nKopardığımız kıymamızı tahta şişimize takıp elimizi ara ara suya batırarak şekil verelim.\r\nYapması çok zevkli. Bu şekilde bitirelim ve fırın tepsimize dizelim yanlarına domates ve biberlerimizi yerleştirelim.\r\n200 derecede ısıtılmış fırında kızarana dek pişirelim.",
                             TurId = 1,
                             UserId = 2,
+                            kisiSayisi = "4-6"
+                        },
+                        new
+                        {
+                            TarifId = 3,
+                            Aciklama = "Zeytinyağı, taze sıkılmış limon suyu, bol nar ekşisi, biber ve domates ile yemeklerin en güzel yancısı olan ezme; içerisine acı biber veya acı pul biber ekleyerek hazırlayabileceğiniz bir tarif.",
+                            Baslik = "Ezme Salata",
+                            IsActive = true,
+                            KategoriId = 3,
+                            Malzeme = "Domates, Salatalık, Maydanoz, Tuz",
+                            Resim = "ezme-salata.webp",
+                            Sure = 10,
+                            TarifAciklama = "Sofralarınızda özellikle de et yemeklerinin yanında harika olacaktır😍 kesinlikle kaydedin ve yapın diyorum😋 Hem çok pratik bir şekilde hazırlanıyor yemelere doyum olmuyor. Ekmeği bandırmak bile büyük keyif veriyor öyle lezzetli öyle lezzetli💕😋\r\n\r\nDomatesler, biberler, soğan, maydanoz, salatalık, ve sarımsak hepsi rondoda çokta ince olmayacak şekilde çekilir. Küçük küçük doğrayarak yada rendeleyerek de yapabilirsiniz ama bu şekilde tavsiye ederim 5 dakikanızı alıyor ve lezzetleri birbirine güzelce geçiyor😍\r\nDerince bir kaba alınır. Üzerine salça, zeytinyağı, tuz, karabiber, pul biber ve sirke eklenip kaşıkla iyice karıştırılır. İşte bu kadar✔️\r\nBir kavanoza koyup buz dolabında 2 haftaya kadar muhafaza edebilirsiniz.\r\nTariflerimi kaçırmamak için profilimdeki linkte Youtube kanalıma abone olmayı unutmayın👆🏻❤️🤗Afiyetle🤗",
+                            TurId = 6,
+                            UserId = 2,
+                            kisiSayisi = "4-6"
+                        },
+                        new
+                        {
+                            TarifId = 4,
+                            Aciklama = "Humus, nohut ve tahine limon suyu, sarımsak, tuz, kimyon, kırmızı biber ve zeytinyağı eklenerek yapılan bir Orta Doğu mezesidir. Houmous ve Hummus olarak da yazılıp okunur. Hummus Arapçada nohut anlamına gelmektedir.",
+                            Baslik = "Humus",
+                            IsActive = true,
+                            KategoriId = 3,
+                            Malzeme = "Nohut, Tahin, Tuz, Buz",
+                            Resim = "humus.jpeg",
+                            Sure = 10,
+                            TarifAciklama = "İlk olarak haşlanmış nohutların kabuklarını elimizle soyalım.\r\nArdından nohutlarımızı rondoya alalım ve üzerine limon suyu, tahin, sarımsak, kimyon ve tuzu ekleyerek karıştıralım.\r\nTüm malzemeler birbiri ile özdeşleştikten sonra rondonun kapağını açalım. Eğer humusun istediğiniz kıvamda değilse su ilavesi yaparak ayarlayabilirsiniz.\r\nHazırladığımız humusu servis tabağına alalım ve kaşıkla şekillendirelim.\r\nArdından süslemek için ortasına haşlanmış nohut ve kırmızı biberle renklendirdiğimiz zeytinyağından gezdirelim.\r\nSon olarak sumak ve ince kıyılmış maydanoz serperek servis edelim. Hazırlaması oldukça kolay mezelerden olan humusu deneyecek herkese şimdiden afiyet olsun!",
+                            TurId = 7,
+                            UserId = 3,
+                            kisiSayisi = "4-6"
+                        },
+                        new
+                        {
+                            TarifId = 5,
+                            Aciklama = "Tane tane pirinç pilavının sırrı, öncelikle pirincin kaliteli ve doğru yöntemler ile yıkanmış olmasından geçer. Pirinç pilavı tarifi tane tane olması için adımları doğru uygulamanız gerekir. Pirincin yıkanması sırasında nişastanın bir kısmı suya geçeceği için, pirincin nişasta oranı düşülerek yıkanması oldukça önem arz eder.",
+                            Baslik = "Piriç Pilavı",
+                            IsActive = true,
+                            KategoriId = 2,
+                            Malzeme = "Prinç, Şehriye, Tere Yağı",
+                            Resim = "pilav.webp",
+                            Sure = 10,
+                            TarifAciklama = "Pirinçler bol su ile yıkanarak, ılık tuzlu suda yarım saat kadar bekletilir.\r\nBu süre sonunda, tuzlu suyu akıtılır ve pirinçler sudan geçirilerek, tüm suyu süzdürülür.\r\nPilav tenceresinde tereyağı eritilir, sıvı yağ da eklenerek üzerine arpa şehriyeler eklenir.\r\nŞehriyenin rengi dönene kadar kavrulur.\r\nPirinçler ilave edilerek, 2-3 dk daha kavrulur.\r\nÜzerine sıcak su eklenir ve tuzu ilave edilir.\r\nTencerenin kapağı kapatılarak, yüksek ateşte fazla suyu çekip pirinçler göz göz oluncaya kadar, yani pirinçlerin üzerinde su çekilip pirinçler göründüğünde kısık ateşe alın ve tamamen suyu çekene kadar pişirin. (Yazının devamında süreler ile ilgili detaylı açıklamayı bulabilirsiniz.)\r\nOcaktan aldıktan sonra, üzerine havlu kağıt koyarak kapağını tekrar kapatın ve demlenmesini bekleyin.\r\nPilavı güzelce karıştırdıktan sonra servis yapabilirsiniz.\r\nNot: Pilav yaparken su oranı 1’e 1,5 olarak ayarlıyorum. Yani 1 ölçü pirinç için, aynı ölçü kabı ile 1,5 kap su ekleyin. 1 su bardağı pirinç, 3-4 kişi için yeterlidir.\r\n\r\nAfiyet olsun.",
+                            TurId = 8,
+                            UserId = 3,
+                            kisiSayisi = "4-6"
+                        },
+                        new
+                        {
+                            TarifId = 6,
+                            Aciklama = "Eti çok lezzetli olan levrek balığı, vitamin ve mineral bakımından çok zengin bir balıktır. Omega 3 ve Omega 6 yağ asitleri içerir. İçerisinde A, B1, B2, B3, B5, B6, B12, D ve E vitaminlerinin yanı sıra iyot, çinko, potasyum, selenyum, magnezyum, demir, kalsiyum ve bolca fosfor bulunur.",
+                            Baslik = "Levrek",
+                            IsActive = true,
+                            KategoriId = 1,
+                            Malzeme = "Levrek, Tuz, Biber, Zetyin Yağı",
+                            Resim = "levrek.webp",
+                            Sure = 10,
+                            TarifAciklama = " Levrekleri temizletip yıkayalım.\r\n Fırın tepsisine yağlı kağıt sererek levrekleri üzerine yerleştirelim.\r\n Balıkların içine ve üzerine azar azar zeytinyağı gezdirelim. Tuz ve karabiber serpelim.\r\n Soğanları, domatesi ve limonu dilimleyerek balıkların içine yerleştirip fırına sürelim.\r\n 160 derecede 45-50 dakika kadar pişirelim.",
+                            TurId = 2,
+                            UserId = 2,
+                            kisiSayisi = "4-6"
+                        },
+                        new
+                        {
+                            TarifId = 7,
+                            Aciklama = "Tavuk dünyasında yediğiniz barbekü soslu dan farksız yapımı basit ve çok lezzetli bir tarifle geldim 😋",
+                            Baslik = "Tavuk Sote",
+                            IsActive = true,
+                            KategoriId = 1,
+                            Malzeme = "Tavuk, Yağ, Biber, Domates, Mantar",
+                            Resim = "tavuk-sote.webp",
+                            Sure = 10,
+                            TarifAciklama = "Öncelikle tavuk ve mantarı minik minik doğruyoruz, biberleri dilerseniz julyen şekilde dilerseniz minik doğrayabilirsiniz.\r\nSarımsağımızı da rendeliyoruz bir köşede bekletiyoruz.\r\nYapışmaz tavamızı kızdırıp tavuklarımızı atıyoruz.\r\nBeyazlaşınca mantarları ekliyoruz.\r\nMantarlar suyunu salıp çekince biberleri ve sarımsağı ekliyoruz.\r\nBiraz bu şekilde kavurup tereyağımızı ekliyoruz.\r\nBiberler hafif ölmeye yakın salçayı 1 bardak sıcak suyla açıp ekliyoruz (yanına makarna yapıyorsanız suyuyla salçayı açıp ekleyebilirsiniz)\r\nBaharatlarımızı da ekleyerek biraz kavuruyoruz, ardından iyice özdeşleşmesi için barbekü sosumuzu damak tadımıza göre az veya çok ekliyoruz (ben calve marka bbq kullandım)\r\nGüzelce pişmeye bırakıyoruz.\r\nPişmeye yakın susam ve mısıra ekleyip 5 dk kadar pişiriyoruz ve sotemiz hazır oluyor😍😍\r\nBen yanına kekikli makarna ve göbek salata tercih ettim çok yakışıyor 😌 deneyecek arkadaşlara şimdiden afiyet olsun🌸💕.",
+                            TurId = 3,
+                            UserId = 1,
+                            kisiSayisi = "4-6"
+                        },
+                        new
+                        {
+                            TarifId = 8,
+                            Aciklama = "Orta büyüklükte 1 porsiyon analı kızlı köfte yaklaşık olarak 274 kaloriye denk gelmektedir.\r\n--\r\n\r\nNefis Yemek Tarifleri WhatsApp kanalı açıldı, hemen siz de katılın.\r\n\r\n5 milyon'dan fazla kişinin takip ettiği Youtube kanalımızda videolu tariflerimizi bulabilirsiniz.\r\n\r\n15 milyondan fazla kişinin indirdiği Nefis Yemek Tarifleri uygulaması ile 850.000'den fazla denenmiş tarif her zaman yanınızda. Hemen siz de indirin.",
+                            Baslik = "Analı Kızlı",
+                            IsActive = true,
+                            KategoriId = 5,
+                            Malzeme = "Bulgur, Kıyma, Soğan, Maydonoz, Tuz",
+                            Resim = "anali-kizli-yemegi.jpg",
+                            Sure = 10,
+                            TarifAciklama = "Bir gün önceden iç harcımızı hazırlamakta fayda var, bunun için yemeklik doğradığımız soğanlarımızı yağla beraber kavurup \" +\r\n \"kıymamızı ekliyoruz.\\r\\nKıyma suyunu çekince baharatlarını da ekleyip soğuyunca buzdolabına kaldırıyoruz.\\r\\nBulgurumuzu güzelce \" +\r\n\"yıkayıp yoğurma kabına alıyoruz.\\r\\nKıymamızı,  tuzunu irmiğini ekleyip arada su ekleyerek içli köfte açabileceğimiz kıvama gelene \" +\r\n\"kadar yaklaşık 20 dakika yoğuruyoruz.\\r\\nHamurumuzun bir kısmı ile hazırladığımız iç harcı kullanarak küçük içli köfteler yapıyoruz \" +\r\n\"(bunlar köftemizin anaları) kalan hamurumuzla küçük yuvarlak köfteler yapıyoruz (bunlar köftemizin kızları)\\r\\nDaha sonra geniş bir \" +\r\n\"çorba tenceresine biraz sıvı yağ ekleyip yemeklik doğradığımız soğanı kavuruyoruz.\\r\\nSalçamızı ve baharatlarımızı da ekleyip \" +\r\n\"üstünü geçecek kadar sıcak su ve nohutlarımızı ekliyoruz.\\r\\nSu kaynayınca köftelerimizi özenle suyun içine atıyoruz.\\r\\nBir iki \" +\r\n\"taşım kaynayınca köftemiz servise hazırdır. Afiyet olsun. :)",
+                            TurId = 1,
+                            UserId = 1,
+                            kisiSayisi = "4-6"
+                        },
+                        new
+                        {
+                            TarifId = 9,
+                            Aciklama = "Borcamda kolaylıkla hazırlayabileceğiniz yaş pastayı aratmayacak sunumuyla lezzetiyle çok porsiyonlu oluşuyla bu pasta anlatılmaz yaşanır cinsten diyorum💯😋👌🏻tarifin detaylı yapılış videosuna ve diğer videolu tariflerime profilimdeki linkten ya da youtube arama bölümüne esin akan tarifleri yazarak ulaşabilirsiniz.",
+                            Baslik = "Yaş Pasta",
+                            IsActive = true,
+                            KategoriId = 6,
+                            Malzeme = "Un, Yumurta, Süt, Yağ, Çikolata",
+                            Resim = "yas-pasta.webp",
+                            Sure = 10,
+                            TarifAciklama = "İlk olarak pandispanya için; yumurtaların sarıları ile beyazlarını ayıralım.\r\nYumurta sarılarını, şeker ile krema kıvamına gelene kadar 6-7 dakika çırpın.\r\nDaha sonra su, un, kabartma tozu ve vanilyayı da ekleyerek, tekrar karıştıralım.\r\nAyrı bir kapta, yumurta akı ve tuzu kar gibi oluncaya kadar çırpalım.\r\nHazırladığımız yumurta aklarını, kek hamuruna ilave edelim. Spatula yardımı ile köpükleri söndürmemeye çalışarak, aynı yönde karıştıralım. Bu bölümü, videoda detaylı bir şekilde izleyebilirsiniz.\r\nPandispanyamızın hamuru hazır. Pişirmeye geçebiliriz. 18 cm çapında, 2 adet kelepçeli kalıp kullandım. Kelepçeli kalıbımızın tabanını, pişirme kağıdı ile kaplayalım.\r\nKek hamurumuzu iki parçaya bölerek, kalıplara dökelim.\r\nÖnceden ısıttığımız 175 derece fırında, yaklaşık 40 dk pişirelim. Kürdan testi yaparak, pandispanyamızı fırından çıkartalım. Pişme süresi fırından fırına değişebilir, bu nedenle kontrol ederek fırından almanızı öneririm.\r\nPişen kekimizi fırından aldıktan sonra, üzerlerine temiz bir örtelim ve soğumaya bırakalım.\r\nİyice soğuyan keklerimizi, vaktiniz var ise streç film ile sararak bir gece buzdolabında dinlendirebilirsiniz. Vaktiniz yok ise muhallebiyi pişirmeye geçebiliriz :)\r\nMuhallebisi için; süt, un, nişasta ve şekeri güzelce çırpalım. Koyulaşıp, göz göz oluncaya kadar karıştırarak pişirelim.\r\nOcaktan aldığımız kremaya, tereyağını ve vanilyayı ekleyerek karıştıralım. Muhallebimizi soğumaya bırakalım.\r\nSoğuyan kremaya, toz krem şantiyi ekleyerek güzelce çırpalım.\r\nKekleri kalıptan çıkartarak, 2 kat olacak şekilde keselim.\r\nAralarına krema sürerek, katları üst üste yerleştirelim.\r\nPastamızı bir gece dinlenmeye bırakalım.\r\nÜzerini kaplamak için sıvı kremaya, pudra şekerini ekleyerek güzelce çırpalım. Buzdolabına kaldıralım.\r\nSon olarak, pastamızı krema ile güzelce kaplayalım. Aslında bu bölüm tamamen sizin isteğinize kalmış. Farklı bir kaplama da kullanabilirsiniz.\r\nKremanın üzerini, Hindistan cevizi ile kaplayalım.\r\nÜzerini, meyveler ile süsleyerek servis yapabilirsiniz.",
+                            TurId = 12,
+                            UserId = 2,
+                            kisiSayisi = "4-6"
+                        },
+                        new
+                        {
+                            TarifId = 10,
+                            Aciklama = "Dokusu kıvamı lezzeti harika olan tatlı tarifi bırakıyorum buraya.\r\n\r\nSe,vdiklerinizle paylaşmayı unutmayın.",
+                            Baslik = "Fıstıklı Burma",
+                            IsActive = true,
+                            KategoriId = 4,
+                            Malzeme = "Fsıtık, Un, Yağ, Şeker",
+                            Resim = "burma.jpg",
+                            Sure = 10,
+                            TarifAciklama = "Öncelikle şerbeti hazırlayın. Şerbetin soğuk olması gerekiyor. Ne kadar soğuk olursa, o kadar çıtır olur.\r\nHazır yufkaları, iki kat iki kat olacak şekilde ayırın.\r\nÜstlerine sıvı yağ sürün, isteyen sadece tereyağı ya da hem tereyağı hem sıvı yağ karıştırabilir. Bana ağır geldiği için, ben sadece sıvı yağ kullandım.\r\nSıvı yağ sürülmüş yufkalara çekilmiş fıstık içini koyup, oklavaya sarın.\r\nOklavanın her iki tarafını büzerek, oklavadan çıkarın. Yağlanmış fırın tepsisine dizin.\r\nEn son üstlerine sıvı yağ sürüp, 180 derece ısınmış fırında 20 dakika pişirin.\r\nFırının ilk sıcaklığı geçince, buz gibi şerbeti üstüne dökün. Şerbetle tatlının buluştuğu an, çıkan ses işte beni benden alıyor :)\r\nFıstıkla süsleyin ve servis edin.",
+                            TurId = 11,
+                            UserId = 3,
                             kisiSayisi = "4-6"
                         });
                 });
@@ -449,7 +697,7 @@ namespace Tarifler.Data.Migrations
             modelBuilder.Entity("Tarifler.Core.Entity.Begeni", b =>
                 {
                     b.HasOne("Tarifler.Core.Entity.User", "User")
-                        .WithMany()
+                        .WithMany("Begeniler")
                         .HasForeignKey("UserId");
 
                     b.HasOne("Tarifler.Core.Entity.YemekTarif", "YemekTarif")
@@ -526,6 +774,8 @@ namespace Tarifler.Data.Migrations
 
             modelBuilder.Entity("Tarifler.Core.Entity.User", b =>
                 {
+                    b.Navigation("Begeniler");
+
                     b.Navigation("YemekTarifleri");
 
                     b.Navigation("Yorumlar");

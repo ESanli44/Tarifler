@@ -1,14 +1,13 @@
-﻿@model Tarifler.Core.Entity.Tur
+﻿@model Tur
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Tur</h4>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 50vh;">
+    <h4 class="text-center">Tür Detay</h4>
     <hr />
+    <div style="width: 70%; border: 1px solid #ccc; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TurAdi)
@@ -24,7 +23,5 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.TurId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
 </div>

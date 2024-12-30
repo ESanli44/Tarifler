@@ -1,0 +1,92 @@
+﻿@model BegeniViewModel
+
+<h4 class="text-center mt-3">Beğendiğim Tarifler</h4>
+<hr />
+<div class="row row-cols-4 g-3">
+    @foreach (var item in Model.begeniList)
+    {
+        <div class="col">
+            <div class="card shadow-sm">
+                <div>
+                    <a href="/Tarifler/Detay/@item.YemekTarifId">
+                        <img src="~/img/Tarif/@item.YemekTarif.Resim" alt="Alternate Text" style="width:265px; height:250px;" />
+                    </a>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text">@item.YemekTarif.Baslik</p>
+                    <hr />
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-body-secondary">@item.User.UserName</small>
+
+                        <div class="btn-group">
+                            <input type="hidden" id="TarifId-@item.YemekTarifId" name="TarifId" value="@item.YemekTarifId" />
+                            <button id="btnBegeni-@item.YemekTarifId" class="btn @((item.Begen==true) ? "btn-primary" : "btn-outline-secondary") begeni-row" data-id="@item.YemekTarifId" type="submit">Beğeni</button>
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-between text-center mb-2">
+                        <div>
+                            <p class="mb-2 h5">@item.YemekTarif.Begeniler.Count</p>
+                            <p class="text-muted mb-0">Beğeni Sayisi</p>
+                        </div>
+                        <div class="px-3">
+                            <p class="mb-2 h5">@item.YemekTarif.Yorumlar.Count</p>
+                            <p class="text-muted mb-0">Yorumlar</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            $(".begeni-row").click(function () {
+                var confirmDelete = confirm("Beğenmek istiyor musunuz?");
+
+                var id = $(this).attr("data-id");
+
+                if (confirmDelete) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Begen")',
+                        dataType: 'json',
+                        data: {
+                            TarifId: $('#TarifId-' + id).val(),
+                        },
+                        success: function (value) {
+                             if(value.deger)
+
+                                $('#btnBegeni-' + id).removeClass().addClass('btn btn-primary  begeni-row');
+                            else
+                                $('#btnBegeni-' + id).removeClass().addClass('btn btn-outline-primary begeni-row');
+
+                        },
+                        error: function () {
+                            alert("Hata");
+                        }
+                    });
+
+                }
+
+
+                return false;
+            });
+        });
+
+    </script>
+
+}

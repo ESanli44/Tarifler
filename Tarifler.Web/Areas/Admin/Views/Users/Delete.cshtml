@@ -5,11 +5,10 @@
 }
 
 
-<h3>Kullanıcıyı Silmek İstiyor musunuz?</h3>
-<hr />
-<div>
-    
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 50vh;">
+    <h4 class="text-center">Kaydı Silmek İstiyor Musunuz?</h4>
     <hr />
+    <div style="width: 70%; border: 1px solid #ccc; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
@@ -75,6 +74,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="UserId" />
-        <input type="submit" value="Sil" class="btn btn-danger" /> |
+        <input type="submit" value="Sil" class="btn btn-danger" />
     </form>
+</div>
 </div>

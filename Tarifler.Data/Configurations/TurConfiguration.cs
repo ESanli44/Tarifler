@@ -20,7 +20,14 @@ namespace Tarifler.Data.Configurations
                 new (){ TurId=2, TurAdi="Balık", TurAciklama="Balık Yemekleri" },
                 new (){ TurId=3, TurAdi="Tavuk", TurAciklama="Tavuk Yemekleri" },
                 new (){ TurId=4, TurAdi="Sebze", TurAciklama="Sebze Yemekleri" },
-                new (){ TurId=5, TurAdi="Çorba", TurAciklama="Çorba Yemekleri" }
+                new (){ TurId=5, TurAdi="Çorba", TurAciklama="Çorba Yemekleri" },
+                new (){ TurId=6, TurAdi="Salata", TurAciklama="Salata Çeşitleri" },
+                new (){ TurId=7, TurAdi="Meze", TurAciklama="Meze Çeşitleri" },
+                new (){ TurId=8, TurAdi="Pilav", TurAciklama="Pilav Çeşitleri" },
+                new (){ TurId=9, TurAdi="Hmaur İşi", TurAciklama="Hamur İşi Yemekler" },
+                new (){ TurId=10, TurAdi="Bakliyat", TurAciklama="Bakliyat Yemekleri" },
+                new (){ TurId=11, TurAdi="Şerbetli Tatlılar", TurAciklama="Şerbetli Tatlılar" },
+                new (){ TurId=12, TurAdi="Pasta", TurAciklama="Pasta Çeşitleri" },
             });
         }
     }

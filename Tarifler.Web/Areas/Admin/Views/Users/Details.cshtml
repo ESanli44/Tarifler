@@ -4,9 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<div>
-    <h4 class="text-center">Detaylar</h4>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 50vh;">
+    <h4 class="text-center">Kullanıcı Detay</h4>
     <hr />
+    <div style="width: 70%; border: 1px solid #ccc; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
@@ -70,4 +71,4 @@
         </dd>
     </dl>
 </div>
-
+</div>

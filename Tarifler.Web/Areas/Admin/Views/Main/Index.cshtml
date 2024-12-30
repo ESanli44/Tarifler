@@ -20,15 +20,25 @@
                     </tr>
                 </thead>          
                 <tbody>
-                @foreach (var kullanici in Model.Kullanicilar)
-                {
-                    <tr>
-                        <td><a href="/Admin/Users/Edit/@kullanici.UserId">@kullanici.FirstName</a></td>
-                        <td>@kullanici.UserEmail</td>
-                        <td>@kullanici.IsActive</td>
-                    </tr>
+                @if( Model.Kullanicilar.Count>0){
+                    @foreach (var kullanici in Model.Kullanicilar)
+                    {
+                        <tr>
+                            <td><a href="/Admin/Users/Edit/@kullanici.UserId">@kullanici.FirstName</a></td>
+                            <td>@kullanici.UserEmail</td>
+                            <td>@kullanici.IsActive</td>
+                        </tr>
+                    }
                 }
-                </tbody>
+                else
+                {
+
+                    <tr>
+                        <td colspan="3">Onay Bekleyen Kullanıcı Yoktur</td>
+                    </tr>
+                    
+                }
+            </tbody>
             </table>   
             
     </div>
@@ -45,15 +55,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var yemek in Model.yemekTarifleri)
-                {
-                    <tr>
+                  @if( Model.yemekTarifleri.Count>0){
+                    @foreach (var yemek in Model.yemekTarifleri)
+                    {
+                        <tr>
 
-                        <td><a href="/Admin/YemekTarifleri/Edit/@yemek.TarifId">@yemek.Baslik</a></td>
-                        <td>@yemek.User.FirstName</td>
-                        <td>@yemek.IsActive</td>
+                            <td><a href="/Admin/YemekTarifleri/Edit/@yemek.TarifId">@yemek.Baslik</a></td>
+                            <td>@yemek.User.FirstName</td>
+                            <td>@yemek.IsActive</td>
+                        </tr>
+                    }
+                  }else{
+                    <tr>
+                        <td colspan="3">Onay Bekleyen Tarif Yoktur</td>
                     </tr>
-                }
+                  }
             </tbody>
         </table>
 
@@ -71,13 +87,19 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var msg in Model.Mesajlar)
-                {
-                    <tr>
+                @if( Model.Mesajlar.Count>0){
+                    @foreach (var msg in Model.Mesajlar)
+                    {
+                        <tr>
 
-                        <td><a href="/Admin/Mesajlar/Edit/@msg.MesajId">@msg.Name</a></td>
-                        <td>@msg.Email</td>
-                        <td>@msg.Durum</td>
+                            <td><a href="/Admin/Mesajlar/Edit/@msg.MesajId">@msg.Name</a></td>
+                            <td>@msg.Email</td>
+                            <td>@msg.Durum</td>
+                        </tr>
+                    }
+                }else{
+                    <tr>
+                        <td colspan="3">Onay Bekleyen Mesajınız Yoktur</td>
                     </tr>
                 }
             </tbody>

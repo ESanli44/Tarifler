@@ -11,6 +11,7 @@ namespace Tarifler.Core.Entity
         public int SliderId { get; set; }
         public string? Baslik { get; set; }
         public string? Aciklama { get; set; }
+        public string? Icerik { get; set; }
         public string? Resim { get; set; }
     }
 }

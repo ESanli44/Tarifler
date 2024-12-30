@@ -18,7 +18,9 @@ namespace Tarifler.Data.Configurations
                 new(){ KategoriId=1, KategoriAdi="Ana Yemek", KategoriAciklama="Ana Yemekler" },
                 new(){ KategoriId=2, KategoriAdi="Ara Sıcak", KategoriAciklama="Ara Sıcaklar" },
                 new(){ KategoriId=3, KategoriAdi="Başlangıç", KategoriAciklama="Başlangıçlar" },
-                new(){ KategoriId=4, KategoriAdi="Tatlı", KategoriAciklama="Tatlılar" }
+                new(){ KategoriId=4, KategoriAdi="Tatlı", KategoriAciklama="Tatlılar" },               
+                new(){ KategoriId=5, KategoriAdi="Yöresel", KategoriAciklama="Yöresel Yemekler" },
+                new(){ KategoriId=6, KategoriAdi="Pasta", KategoriAciklama="Pastalar" },
             });
         }
     }

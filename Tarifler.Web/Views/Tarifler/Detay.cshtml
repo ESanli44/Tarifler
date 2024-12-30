@@ -11,7 +11,7 @@
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
-                <img src="~/img/Tarif/@Model.Resim " class="img-thumbnail rounded-start" alt="Alternate Text" />
+                <img src="~/img/Tarif/@Model.Resim" class="img-thumbnail rounded-start" style="width:300px; height:300px;" alt="Alternate Text" />
             </div>
             <div class="col-md-8 d-block ">
 
@@ -51,27 +51,52 @@
             </div>
         </div>
     </div>
-    <form action="/Tarifler/YorumEkle" method="post" class="border">
+   
+   @* ------------------------------------------------------------------------- *@
+   <h4 class="text-center mt-4"> Yorumlar </h4>
+    <div id="comments" class=" my-3">
+     @foreach(var yorum in Model.Yorumlar)
+     {
+        <div class="col-12 mb-3 w-100 border" id="row-@yorum.YorumId">
+                <input type="hidden" id="YorumId-@yorum.YorumId" name="YorumId" value="@yorum.YorumId" />
+            <div class="mx-3 my-3">
+                <h6> <u>@yorum.User.UserName</u> </h6>
+                <p>@yorum.Icerik</p>
+                            
+            </div>
+                <hr />
+            <div class="mx-3">
+                 <small>@yorum.YayinTarihi</small>
+                    @if (Context.User.IsInRole("Admin"))
+                    {
+                        <button id="btnYorumSil" class="btn btn-danger delete-row" data-id="@yorum.YorumId" type="submit">Sil</button>
+                    }
+                    
+            </div>
+        </div>
+     }
+    </div>
+
+
+    @if (Context.User.Identity.IsAuthenticated)
+    {
         <input type="hidden" id="TarifId" name="TarifId" value="@Model.TarifId">
         <div class="col">
             <div class="mb-3">
                 <label for="Text" class="form-label">Yorum:</label>
                 <textarea type="text" name="Text" rows="3" id="Text" class="form-control"> </textarea>
-                <button class="btn btn-primary my-2" type="submit">Gönder</button>
+                <button id="btnYorumKayit" class="btn btn-primary my-2" type="submit">Gönder</button>
             </div>
         </div>
-    </form>
+    }
+    else
+    {
+        <div>
+            <h6>Yorum Yapmak İçin Giriş Yapınız...</h6>
+        </div>
+    }
     
-     @foreach(var yorum in Model.Yorumlar)
-     {                          
-        <div class="col w-100 border">
-            <div class="mb-3">
-                <h6>@yorum.User.UserName</h6>
-                <p>@yorum.Icerik</p>
-                <small>@yorum.YayinTarihi</small>
-            </div>
-        </div>
-     }
+    @* ------------------------------------------------------------------------- *@
 
     <hr class="mt-5">
     <div>
@@ -79,48 +104,84 @@
     </div>
     <hr>
     <div class="row row-cols-md-4">
-        <div class="col">
-            <div class="card h-100">
-                <img src="~/img/Tarif/@Model.Resim " class="card-img-top" alt="Alternate Text" />
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="~/img/Tarif/@Model.Resim " class="card-img-top" alt="Alternate Text" />
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a short card.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="~/img/Tarif/@Model.Resim " class="card-img-top" alt="Alternate Text" />
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="~/img/Tarif/@Model.Resim " class="card-img-top" alt="Alternate Text" />
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                </div>
-            </div>
-        </div>
+
+        @await Component.InvokeAsync("BenzerUrun",Model.TurId);
+
     </div>
 </div>
 
 
 
 
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function() {
 
+            $("#btnYorumKayit").click(function() {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("YorumEkle")',
+                    dataType: 'json',
+                    data: {
+                        TarifId: $('#TarifId').val(),
+                        Text: $('#Text').val(),
+                    },
+                    success: function(yorum) {
+
+                        var date = new Date(yorum.yayinTarihi);
+                
+                         $("#comments").append(`
+                                <div class="col-12 mb-3 w-100 border" id="row-${yorum.yorumId}">
+                                    <input type="hidden" id="YorumId-${yorum.yorumId}" name="YorumId" value="${yorum.yorumId}" />
+                                    <div class="mx-3 my-3">
+                                        <h6>${yorum.username}</h6>
+                                        <p>${yorum.text}</p>
+                                    </div>
+                                    <hr />
+                                    <div class="mx-3">
+                                        <small>${date.toLocaleDateString()}</small>  
+                                        <button id="btnYorumSil" class="btn btn-danger delete-row" data-id="${yorum.yorumId}" type="submit">Sil</button>
+                                    </div>
+                                </div>
+                            `);
+
+                        $("#Text").val('');
+
+                        //var adet = parseInt($("#commentCount").text());
+                        //$("#commentCount").text(adet+1);
+
+                    }
+                });
+
+                return false;
+            });
+
+            $("#comments").on("click", ".delete-row", function () {
+
+                var confirmDelete = confirm("Kaydı Silmek İstiyor musunuz?");
+
+                if (confirmDelete)
+                {
+                    var id = $(this).attr("data-id");
+
+                    $.ajax({
+                        type: 'post',
+                        url: '@Url.Action("YorumSil")',
+                        datatype: 'json',
+                        data: {
+                            YorumId: $('#YorumId-'+id).val(),
+                        },
+                        success: function (yorum) {
+                            $('#row-' + yorum.yorumId).remove();
+                        }
+                    });
+                }
+
+                return false;
+            });
+        });
+    </script>
+}
 
 

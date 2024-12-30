@@ -23,5 +23,6 @@ namespace Tarifler.Core.Entity
 
         public List<YemekTarif> YemekTarifleri { get; set; } = new List<YemekTarif>();
         public List<Yorum> Yorumlar { get; set; } = new List<Yorum>();
+        public List<Begeni> Begeniler { get; set; } = new List<Begeni>();
     }
 }

@@ -12,6 +12,8 @@ using Tarifler.Web.Utils;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Tarifler.Web.Models;
 
 namespace Tarifler.Web.Areas.Admin.Controllers
 {
@@ -65,13 +67,13 @@ namespace Tarifler.Web.Areas.Admin.Controllers
         //----------------------------------------------------------
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TarifModelView model, IFormFile Image)
+        public async Task<IActionResult> Create(TarifModelView model, IFormFile Resim)
         {
             
             var yemekTarif = _mapper.Map<YemekTarif>(model);
             if (ModelState.IsValid)
             {
-                yemekTarif.Resim = await FileHelper.FileLoaderAsync(Image, "/img/Tarif/");
+                yemekTarif.Resim = await FileHelper.FileLoaderAsync(Resim, "/img/Tarif/");
                 _context.Add(yemekTarif);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -98,13 +100,13 @@ namespace Tarifler.Web.Areas.Admin.Controllers
             ViewData["TurId"] = new SelectList(_context.Turler, "TurId", "TurAdi", yemekTarif.TurId);
             ViewData["UserId"] = new SelectList(_context.Kullanicilar, "UserId", "FirstName", yemekTarif.UserId);
 
-            var tarif = _mapper.Map<TarifModelView>(yemekTarif);
+            var tarif = _mapper.Map<tarifUptadateViewModel>(yemekTarif);
             return View(tarif);
         }
         //-----------------------------------------------------------
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, TarifModelView model, IFormFile Image)
+        public async Task<IActionResult> Edit(int id, tarifUptadateViewModel model, IFormFile Resim)
         {
             var yemekTarif = _mapper.Map<YemekTarif>(model);
             if (id != yemekTarif.TarifId)
@@ -112,31 +114,23 @@ namespace Tarifler.Web.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    yemekTarif.Resim = await FileHelper.FileLoaderAsync(Image, "/img/Tarif/");
-                    _context.Update(yemekTarif);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!YemekTarifExists(yemekTarif.TarifId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                if (Resim is not null)
+                    yemekTarif.Resim = await FileHelper.FileLoaderAsync(Resim, "/img/Tarif/");
+
+                _context.Update(yemekTarif);
+                 await _context.SaveChangesAsync();               
+             
                 return RedirectToAction(nameof(Index));
+            }catch(Exception ex)
+            {
+                ViewData["KategoriId"] = new SelectList(_context.Kategoriler, "KategoriId", "KategoriAdi", yemekTarif.KategoriId);
+                ViewData["TurId"] = new SelectList(_context.Turler, "TurId", "TurAdi", yemekTarif.TurId);
+                ViewData["UserId"] = new SelectList(_context.Kullanicilar, "UserId", "FirstName", yemekTarif.UserId);
+                return View(model);
             }
-            ViewData["KategoriId"] = new SelectList(_context.Kategoriler, "KategoriId", "KategoriAdi", yemekTarif.KategoriId);
-            ViewData["TurId"] = new SelectList(_context.Turler, "TurId", "TurAdi", yemekTarif.TurId);
-            ViewData["UserId"] = new SelectList(_context.Kullanicilar, "UserId", "FirstName", yemekTarif.UserId);
-            return View(yemekTarif);
+            
         }
 //----------------------------------Delete-------------------------------------------------------------------------
         public async Task<IActionResult> Delete(int? id)

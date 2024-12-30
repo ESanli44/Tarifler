@@ -1,5 +1,13 @@
 ﻿@model User
 
+@if(ViewBag.basarili != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <h4>@ViewBag.basarili</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="success" aria-label="Close"></button>
+    </div>
+}
+
 <section class="vh-100">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -16,27 +24,31 @@
                         </p>
                        
                         <div>
-                            <a href="/Profil/Yemeklerim" type="button" class="btn btn-outline-primary btn-rounded btn-lg">
-                                Yemeklerim
-                            </a>
-                            <a type="button" class="btn btn-outline-primary btn-rounded btn-lg">
+                            @if (Context.User.IsInRole("Admin") || Context.User.IsInRole("Member"))
+                            {
+                                <a href="/Profil/Yemeklerim" type="button" class="btn btn-outline-primary btn-rounded btn-lg">
+                                    Yemeklerim
+                                </a>
+                            }
+                            
+                            <a href="/Profil/Begenilenler" type="button" class="btn btn-outline-primary btn-rounded btn-lg">
                                 Beğenilenler
                             </a>
                         </div>
                         <hr />
                         <div class="d-flex justify-content-between text-center mt-5 mb-2">
                             <div>
-                                <p class="mb-2 h5">8471</p>
+                                <p class="mb-2 h5">@Model.YemekTarifleri.Count</p>
                                 <p class="text-muted mb-0">Tarif Sayısı</p>
                             </div>
                             <div class="px-3">
-                                <p class="mb-2 h5">8512</p>
+                                <p class="mb-2 h5">@Model.Begeniler.Count</p>
                                 <p class="text-muted mb-0">Beğeniler</p>
                             </div>
                             <div>
-                                <a href="#"><p class="text-muted mb-0 h6">Şifre Değiştir</p></a>
+                                <a href="/Profil/SifreGuncelle"><p class="text-muted mb-0 h6">Şifre Değiştir</p></a>
                                <hr />
-                                <a href="#"><p class="text-muted mb-0 h6">Ayarlar</p></a>
+                                <a href="/Profil/Bilgilerim"><p class="text-muted mb-0 h6">Bilgilerim</p></a>
                             </div>
                         </div>
                     </div>
